@@ -9,7 +9,15 @@ const getUserWithTodos = async (req, res) => {
     res.send(result)
 }
 
+const createUser = async (req, res) => {
+    const data = req.body
+    const result = await userService.createUser(data)
+
+    res.send(result)
+}
+
 
 module.exports = {
-    getUserWithTodos
+    getUserWithTodos,
+    createUser
 }

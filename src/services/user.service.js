@@ -9,8 +9,20 @@ const getUserWithTodos = async (user_id) => {
     return result
 }
 
+const createUser = async (user) => {
+    const result = await prisma.Users.create({
+        data: {
+            name : user.name,
+            email: user.email,
+            password: user.password
+        }
+    })
+
+    return result
+}
 
 
 module.exports = {
-    getUserWithTodos
+    getUserWithTodos,
+    createUser
 }
