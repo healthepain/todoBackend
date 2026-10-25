@@ -10,7 +10,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use("/todos", authenticate, authorize(["USER"]), todoRoutes)
+// app.use("/todos", authenticate, authorize(["USER"]), todoRoutes)
+app.use("/todos", todoRoutes)
 app.use("/users", authenticate, userRoutes)
 app.use(authRoutes)
 
