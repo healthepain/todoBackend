@@ -4,6 +4,10 @@ const prisma = require("../config/prisma.js")
 
 const getTodos = async () => {
 
+    throw {
+        status : 404,
+        message : "not found"
+    }
     const todos = await prisma.Todos.findMany()
 
     return todos
@@ -50,7 +54,7 @@ const updateTodoStatus = async (id, is_completed) => {
 const deleteTodo = async (id) => {
     // const [todo] = await db.query("DELETE FROM Todos WHERE id = ?", [id])
     const result = await prisma.Todos.delete({
-        where: {id: Number(id)}
+        where: { id: Number(id) }
     })
 
     return result

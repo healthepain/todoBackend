@@ -28,7 +28,7 @@ const login = async (req, res) => {
         })
 
     res.json({
-        tokn: token
+        token: token
     })
 }
 
