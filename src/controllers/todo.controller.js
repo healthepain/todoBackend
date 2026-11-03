@@ -44,7 +44,10 @@ const getTodoById = async (req, res) => {
 const createTodo = async (req, res, next) => {
     try {
 
-        const data = req.body
+        const data = {
+            ...req.body,
+            image: req.file ? req.file.path : null
+        }
 
         const validationResult = todoSchema.safeParse(data)
 

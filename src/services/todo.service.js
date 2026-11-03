@@ -40,8 +40,9 @@ const createTodo = async (todo) => {
         data: {
             title: todo.title,
             user: {
-                connect: { id: todo.user_id }
-            }
+                connect: { id: Number(todo.user_id) }
+            },
+            image: todo.image ? todo.image : null
         }
     })
     return result

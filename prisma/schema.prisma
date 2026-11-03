@@ -30,6 +30,7 @@ model Todos{
   user_id Int
   title String
   is_completed Boolean @default(false)
+  image String?
   created_at DateTime @default(now())
   update_at DateTime @default(now()) @updatedAt
 

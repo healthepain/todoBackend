@@ -1,4 +1,4 @@
-exports.successResponse = (res, data, message = "Succcess") => {
+exports.successResponse = (res, data, message = "Success") => {
     return res.status(200).json({
         message,
         data,

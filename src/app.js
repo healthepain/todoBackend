@@ -18,4 +18,6 @@ app.use(authRoutes)
 
 app.use(errorHandler)
 
+app.use("/uploads", express.static("uploads"))
+
 module.exports = app
