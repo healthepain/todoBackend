@@ -6,14 +6,18 @@ const login = async (req, res) => {
     const { email, password } = req.body
     const user = await authService.getUserByEmail(email)
     if (!user) {
-        res.status(401).json({
-            message: "user not found"
-        })
+        // return res.status(401).json({
+        //     message: "user not found"
+        // })
+        throw {
+            status: 401,
+            message: "User Doesn't Exists",
+        }
     }
 
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
-        res.status(401).json({
+        return res.status(401).json({
             message: "password doesn't match"
         })
     }

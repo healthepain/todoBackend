@@ -4,11 +4,20 @@ const prisma = require("../config/prisma.js")
 
 const getTodos = async () => {
 
-    throw {
-        status : 404,
-        message : "not found"
-    }
+    // throw {
+    //     status : 404,
+    //     message : "not found"
+    // }
     const todos = await prisma.Todos.findMany()
+
+    return todos
+}
+
+const getTodoByUserId = async (id) => {
+
+    const todos = await prisma.Todos.findMany({
+        where: { user_id: Number(id) }
+    })
 
     return todos
 }
@@ -51,6 +60,18 @@ const updateTodoStatus = async (id, is_completed) => {
     return result
 }
 
+const updateTodoStatusByUserId = async (id, is_completed) => {
+
+    const result = await prisma.Todos.updateMany({
+        where: { user_id: Number(id) },
+        data: {
+            is_completed
+        }
+    })
+
+    return result
+}
+
 const deleteTodo = async (id) => {
     // const [todo] = await db.query("DELETE FROM Todos WHERE id = ?", [id])
     const result = await prisma.Todos.delete({
@@ -60,10 +81,22 @@ const deleteTodo = async (id) => {
     return result
 }
 
+const deleteTodoByUserId = async (id) => {
+
+    const result = await prisma.Todos.deleteMany({
+        where: { user_id: Number(id) }
+    })
+
+    return result
+}
+
 module.exports = {
     getTodos,
     getTodoById,
+    getTodoByUserId,
     createTodo,
     updateTodoStatus,
-    deleteTodo
+    updateTodoStatusByUserId,
+    deleteTodo,
+    deleteTodoByUserId
 }
